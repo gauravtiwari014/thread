@@ -1,0 +1,49 @@
+class MyNewThread implements Runnable
+{
+	Thread t1;
+	String threadName;
+	public MyNewThread(String threadName)
+	{
+		this.threadName = threadName;
+		t1 = new Thread(this,threadName);
+	}
+	public void run()
+	{
+		for(int i=0;i<5;i++)
+		{
+			System.out.println(threadName+"Loop"+(i+1));
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
+public class MultipleThreads {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MyNewThread mnt1 = new MyNewThread("ChildThread1");
+		MyNewThread mnt2 = new MyNewThread("ChildThread1");
+		MyNewThread mnt3 = new MyNewThread("ChildThread1");
+		mnt1.t1.start();
+		mnt2.t1.start();
+		mnt3.t1.start();
+		
+		for(int i=0;i<5;i++)
+		{
+			System.out.println(" Main Thread Loop"+(i+1));
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+				
+			
+		}
+ 
+
+	}
+
+}
